@@ -4,9 +4,6 @@ public class brand {
     private String name;
     private int id;
     
-    public brand() {
-    }
-    
     public brand(String name, int id) {
         this.name = name;
         this.id = id;

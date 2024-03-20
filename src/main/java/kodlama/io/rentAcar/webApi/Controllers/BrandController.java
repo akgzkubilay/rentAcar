@@ -22,7 +22,9 @@ public class BrandController {
     }
     @GetMapping("/getall") //getall isteği geldiğinde bu metodu çalıştırır.
     public List<brand> getAll(){
+        System.out.println(this.brandService.getAll());
         return this.brandService.getAll();
+        
     }
 
 }
