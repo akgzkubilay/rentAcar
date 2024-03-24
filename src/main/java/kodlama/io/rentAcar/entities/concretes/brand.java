@@ -19,6 +19,9 @@ public class brand {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)//id'nin otomatik artan bir değer olduğunu belirtir. 
     private int id;
+
+    public brand() {
+    }
     
     public brand(String name, int id) {
         this.name = name;
