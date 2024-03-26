@@ -42,3 +42,7 @@ public class brand {
 
 
 }
+
+//brand-->id,name
+//GetAllBrandResponse-->id,name
+//brand-->id,name==>GetAllBrandResponse-->id,name  bu durma da mapping denir.

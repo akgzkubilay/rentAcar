@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import kodlama.io.rentAcar.business.abstracts.BrandService;
-import kodlama.io.rentAcar.entities.concretes.brand;
+import kodlama.io.rentAcar.business.requests.CreateBrandRequest;
+import kodlama.io.rentAcar.business.responses.GetAllBrandResponse;
 @RestController //derleme işlemi sonucunda bu class'ın bir controller olduğunu belirtir.
 @RequestMapping("/api/brands") //örn: pilot yukardaki kontrol merkezi ile burdan iletişim kurup erişecek /api/brands  adresi ile erişecek    
 
@@ -20,12 +22,18 @@ public class BrandController {
     public BrandController(BrandService brandService) {
         this.brandService = brandService;
     }
+
     @GetMapping("/getall") //getall isteği geldiğinde bu metodu çalıştırır.
-    public List<brand> getAll(){
+    public List<GetAllBrandResponse> getAll(){
         System.out.println(this.brandService.getAll());
         return this.brandService.getAll();
-        
     }
+
+    @PostMapping("/add") //add isteği geldiğinde bu metodu çalıştırır.
+     public void add(CreateBrandRequest request){
+        this.brandService.add(request);
+     }
+
 
 }
 // bu paketin özeti :istek controllere yapılıyor ve controller isteği karşılıyor ise bu isteği business taşıyo ve business isteği karşılıyor ise bu isteği dataAcces taşıyo ve dataAcces isteği karşılıyor ise veritabanına ulaşıyor. 
