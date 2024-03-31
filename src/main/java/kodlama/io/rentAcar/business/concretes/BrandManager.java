@@ -11,18 +11,25 @@ import kodlama.io.rentAcar.business.requests.CreateBrandRequest;
 import kodlama.io.rentAcar.business.responses.GetAllBrandResponse;
 import kodlama.io.rentAcar.dataAcces.abstracts.BrandRepository;
 import kodlama.io.rentAcar.entities.concretes.brand;
+import lombok.AllArgsConstructor;
+
 @Service //bu class'ın bir business service olduğunu belirtir.
+@AllArgsConstructor //bu annotation sayesinde alttaki constructor'ı yazmamıza gerek kalmaz.
 public class BrandManager implements BrandService{
     private BrandRepository brandRepository;
     //bu kısım data access katmanını içerisinde kullanmak istediğimiz sınıfı belirtir
     @Autowired // parametrelerine bak ve bu parametrelerden biri bunu implements ediyor  ise ona uygun sınıfı bulup enjekte et.
-    public BrandManager(BrandRepository brandRepository) {
-        this.brandRepository = brandRepository;
-    }
-    //BU KISIMDA KALDIN !!!1
+
+     //bu kısım veri tabanını  katmanını(brandrepository ) enjete ediyoruz
+     //bu kısımı yazmak yerine @AllArgsConstructor annotation kullanılabilir.   
+    // public BrandManager(BrandRepository brandRepository) {
+    //     this.brandRepository = brandRepository;
+    // }
+    
     @Override
     public List<GetAllBrandResponse> getAll() {
         //brand tablosundan tüm verileri GetAllBrandResponse türünde  çekmek için oluşturulmuş bir response sınıfıdır.
+        
 
         List<brand> brands=brandRepository.findAll();
         List<GetAllBrandResponse> brandResponses= new ArrayList<GetAllBrandResponse>();
