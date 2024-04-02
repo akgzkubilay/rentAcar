@@ -5,12 +5,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 import kodlama.io.rentAcar.business.abstracts.BrandService;
 import kodlama.io.rentAcar.business.requests.CreateBrandRequest;
 import kodlama.io.rentAcar.business.responses.GetAllBrandResponse;
+import kodlama.io.rentAcar.business.responses.GetByIdBrandResponse;
 import lombok.AllArgsConstructor;
 @RestController //derleme işlemi sonucunda bu class'ın bir controller olduğunu belirtir.
 @RequestMapping("/api/brands") //örn: pilot yukardaki kontrol merkezi ile burdan iletişim kurup erişecek /api/brands  adresi ile erişecek    
@@ -24,13 +28,20 @@ public class BrandController {
      //   this.brandService = brandService;
     //}
 
-    @GetMapping("/getall") //getall isteği geldiğinde bu metodu çalıştırır.
+    @GetMapping() //getall isteği geldiğinde bu metodu çalıştırır.
     public List<GetAllBrandResponse> getAll(){
         System.out.println(this.brandService.getAll());
         return this.brandService.getAll();
     }
 
-    @PostMapping("/add") //add isteği geldiğinde bu metodu çalıştırır.
+    @GetMapping("/{id}") //getById isteği geldiğinde bu metodu çalıştırır.  /{id}  bu yapıda herhangi  bir id istek geldiğinde bu metodu çalıştırır.  
+    public GetByIdBrandResponse getById( int id){
+        System.out.println(this.brandService.getAll());
+        return this.brandService.getById(id);
+    }
+
+    @PostMapping() //add isteği geldiğinde bu metodu çalıştırır.
+    @ResponseStatus(code=HttpStatus.CREATED)
      public void add(CreateBrandRequest request){
         this.brandService.add(request);
      }
